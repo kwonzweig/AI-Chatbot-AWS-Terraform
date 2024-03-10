@@ -5,7 +5,7 @@ This repository contains Terraform configurations to deploy a serverless ChatBot
 ![alt text](https://github.com/kwonzweig/AI-Chatbot-AWS-Terraform/blob/master/flow_diagram.png?raw=true)
 
 ## Chatbot API Demo
-[Click here to access the live demo.](http://ec2-54-84-154-233.compute-1.amazonaws.com/)
+[Click here to access the live demo.](http://ec2-3-85-135-173.compute-1.amazonaws.com/)
 
 Please note: The demo is deployed on an AWS EC2 instance and may be subject to downtime for maintenance or updates. 
 
