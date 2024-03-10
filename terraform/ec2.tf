@@ -36,19 +36,17 @@ resource "aws_instance" "app_instance" {
   user_data              = <<-EOF
               #!/bin/bash
               echo "CHATBOT_API_ENDPOINT=${aws_api_gateway_deployment.chatbot_api_deployment.invoke_url}" >> /etc/environment
+              sudo yum update -y
+              sudo yum install git -y
+              sudo amazon-linux-extras install docker -y
+              sudo systemctl start docker
+              sudo systemctl enable docker
               EOF
 
   provisioner "remote-exec" {
     inline = [
-      "sudo yum update -y",
-      "sudo yum install git -y",
-      "sudo amazon-linux-extras install docker -y",
-      "sudo systemctl start docker",
-      "sudo systemctl enable docker",
-      "sudo usermod -aG docker ${var.ec2_user}",
-
-      # Clone repository
       "sudo git clone https://github.com/kwonzweig/chatbot-api-aws-terraform.git /home/ec2-user/chatbot-api-aws-terraform",
+      "cd /home/ec2-user/chatbot-api-aws-terraform/streamlit && sudo docker build -t streamlit-app . && sudo docker run -d -p 80:8501 --restart=always -e CHATBOT_API_ENDPOINT=$(grep CHATBOT_API_ENDPOINT /etc/environment | cut -d'=' -f2) streamlit-app"
     ]
 
     connection {

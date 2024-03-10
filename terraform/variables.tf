@@ -16,19 +16,6 @@ variable "lambda_logger_file" {
   default     = "../lambda/logger/logger.zip" # Adjust this path as necessary
 }
 
-#variable "lambda_logger_post_file" {
-#  description = "The path to the logger Lambda function ZIP file."
-#  type        = string
-#  default     = "../lambda/logger/logger_post.zip" # Adjust this path as necessary
-#}
-#
-#variable "lambda_logger_get_file" {
-#  description = "The path to the logger Lambda function ZIP file."
-#  type        = string
-#  default     = "../lambda/logger/logger_get.zip" # Adjust this path as necessary
-#
-#}
-
 variable "s3_bucket_name" {
   description = "The name of the S3 bucket for storing logs."
   type        = string

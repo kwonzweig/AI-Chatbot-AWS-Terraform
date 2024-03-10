@@ -60,7 +60,7 @@ jobs:
 
     # Set an environment variable for the private key path and OpenAI API key
     env:
-      TF_VAR_private_key_path: ${{ github.workspace }}/my-aws-key.pem
+      TF_VAR_private_key_path: ${{ github.workspace }}/aws-key-pair.pem
       TF_VAR_openai_api_key: ${{ secrets.OPENAI_API_KEY }}
       TF_VAR_aws_key_pair_name: demo-chatbot-api-key
 
@@ -85,8 +85,8 @@ jobs:
     # Decode AWS Private Key for use in Terraform
     - name: Decode AWS Private Key
       run: |
-        echo "${{ secrets.AWS_PRIVATE_KEY }}" | base64 --decode > ${{ github.workspace }}/my-aws-key.pem
-        chmod 600 ${{ github.workspace }}/my-aws-key.pem
+        echo "${{ secrets.AWS_PRIVATE_KEY }}" | base64 --decode > ${{ github.workspace }}/aws-key-pair.pem
+        chmod 600 ${{ github.workspace }}/aws-key-pair.pem
       env:
         AWS_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
 
