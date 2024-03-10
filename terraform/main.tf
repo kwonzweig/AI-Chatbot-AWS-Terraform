@@ -1,3 +1,13 @@
+terraform {
+  backend "remote" {
+    organization = "demo-chatbot-api-org"
+
+    workspaces {
+      name = "demo-chatbot-api-workspace"
+    }
+  }
+}
+
 provider "aws" {
   region = var.aws_region
 }
