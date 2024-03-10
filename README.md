@@ -3,7 +3,7 @@
 This repository contains Terraform configurations to deploy a serverless ChatBot API on AWS, utilizing various AWS services. It provides an easy and scalable way to deploy a ChatBot API, leveraging OpenAI's ChatGPT for the chatbot logic, and a Streamlit-based frontend for user interactions.
 
 ## Chatbot Interface Flow
-![alt text](https://github.com/kwonzweig/AI-Chatbot-AWS-Terraform/blob/master/chatbot_diagram.png?raw=true)
+![alt text](https://github.com/kwonzweig/AI-Chatbot-AWS-Terraform/blob/master/chatbot_interface_diagram.png?raw=true)
 
 ## Conversation History Flow
 ![alt text](https://github.com/kwonzweig/AI-Chatbot-AWS-Terraform/blob/master/conv_hist_diagram.png.png?raw=true)
