@@ -45,6 +45,7 @@ resource "aws_instance" "app_instance" {
 
   provisioner "remote-exec" {
     inline = [
+      "sleep 60", # Waits for 60 seconds before proceeding to the next commands
       "sudo git clone https://github.com/kwonzweig/chatbot-api-aws-terraform.git /home/ec2-user/chatbot-api-aws-terraform",
       "cd /home/ec2-user/chatbot-api-aws-terraform/streamlit && sudo docker build -t streamlit-app . && sudo docker run -d -p 80:8501 --restart=always -e CHATBOT_API_ENDPOINT=$(grep CHATBOT_API_ENDPOINT /etc/environment | cut -d'=' -f2) streamlit-app"
     ]
