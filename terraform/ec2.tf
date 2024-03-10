@@ -1,5 +1,5 @@
 resource "aws_security_group" "streamlit_sg" {
-  name        = "streamlit_app_sg"
+  name        = "demo_chatbot_streamlit_sg"
   description = "Security group for Streamlit application"
 
   ingress {
@@ -41,13 +41,14 @@ resource "aws_instance" "app_instance" {
               sudo amazon-linux-extras install docker -y
               sudo systemctl start docker
               sudo systemctl enable docker
+              sudo usermod -a -G docker ec2-user
               EOF
 
   provisioner "remote-exec" {
     inline = [
       "sleep 60", # Waits for 60 seconds before proceeding to the next commands
-      "sudo git clone https://github.com/kwonzweig/chatbot-api-aws-terraform.git /home/ec2-user/chatbot-api-aws-terraform",
-      "cd /home/ec2-user/chatbot-api-aws-terraform/streamlit && sudo docker build -t streamlit-app . && sudo docker run -d -p 80:8501 --restart=always -e CHATBOT_API_ENDPOINT=$(grep CHATBOT_API_ENDPOINT /etc/environment | cut -d'=' -f2) streamlit-app"
+      "sudo git clone https://github.com/kwonzweig/AI-Chatbot-AWS-Terraform.git /home/ec2-user/AI-Chatbot-AWS-Terraform",
+      "cd /home/ec2-user/AI-Chatbot-AWS-Terraform/streamlit && sudo docker build -t streamlit-app . && sudo docker run -d -p 80:8501 --restart=always -e CHATBOT_API_ENDPOINT=$(grep CHATBOT_API_ENDPOINT /etc/environment | cut -d'=' -f2) streamlit-app"
     ]
 
     connection {

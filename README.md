@@ -1,12 +1,19 @@
-
-# Serverless ChatBot API Deployment with Terraform on AWS
+# AI-Chatbot-AWS-Terraform
 
 This repository contains Terraform configurations to deploy a serverless ChatBot API on AWS, utilizing various AWS services. It provides an easy and scalable way to deploy a ChatBot API, leveraging OpenAI's ChatGPT for the chatbot logic, and a Streamlit-based frontend for user interactions.
+
+## Features
+
+- **Serverless Architecture**: Utilizes AWS Lambda, API Gateway, and S3 for a scalable, cost-efficient backend.
+- **Terraform Automation**: Infrastructure as code (IaC) ensures repeatable, error-free deployments.
+- **GitHub Actions**: Automated deployment pipeline for continuous integration and delivery.
+- **Streamlit Interface**: A user-friendly frontend for interacting with the chatbot, deployed on an EC2 instance.
+- **OpenAI Integration**: Leverages the power of GPT models for natural language understanding and responses.
 
 ## Prerequisites
 
 - AWS Account
-- Terraform installed on your machine
+- Terraform installed on your local machine
 - OpenAI API key
 
 ## Configuration
@@ -66,13 +73,6 @@ terraform plan
 ```bash
 terraform apply -auto-approve -input=false
 ```
-#### 5. Run following command on deployed EC2 for streamlit frontend
-
-```bash
-cd chatbot-api-aws-terraform/streamlit
-sudo docker build -t streamlit-app .
-sudo docker run -d -p 80:8501 --restart=always -e CHATBOT_API_ENDPOINT=$(grep CHATBOT_API_ENDPOINT /etc/environment | cut -d'=' -f2) streamlit-app
-```
 
 ## Architecture Overview
 
@@ -97,7 +97,3 @@ terraform destroy
 ## Contributing
 
 Contributions are welcome! Please feel free to submit pull requests or open issues to improve the project.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
