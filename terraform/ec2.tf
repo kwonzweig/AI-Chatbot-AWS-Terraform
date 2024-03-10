@@ -37,7 +37,6 @@ resource "aws_instance" "app_instance" {
               #!/bin/bash
               echo "CHATBOT_API_ENDPOINT=${aws_api_gateway_deployment.chatbot_api_deployment.invoke_url}" >> /etc/environment
               sudo yum update -y
-              sudo yum install git -y
               sudo amazon-linux-extras install docker -y
               sudo systemctl start docker
               sudo systemctl enable docker
@@ -47,6 +46,7 @@ resource "aws_instance" "app_instance" {
   provisioner "remote-exec" {
     inline = [
       "sleep 60", # Waits for 60 seconds before proceeding to the next commands
+      "sudo yum install git -y",
       "sudo git clone https://github.com/kwonzweig/AI-Chatbot-AWS-Terraform.git /home/ec2-user/AI-Chatbot-AWS-Terraform",
       "cd /home/ec2-user/AI-Chatbot-AWS-Terraform/streamlit && sudo docker build -t streamlit-app . && sudo docker run -d -p 80:8501 --restart=always -e CHATBOT_API_ENDPOINT=$(grep CHATBOT_API_ENDPOINT /etc/environment | cut -d'=' -f2) streamlit-app"
     ]
