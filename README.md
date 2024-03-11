@@ -49,7 +49,7 @@ export AWS_ACCESS_KEY_ID="your_aws_access_key"
 export AWS_SECRET_ACCESS_KEY="your_aws_secret_key"
 export TF_VAR_openai_api_key="your_openai_key"
 export TF_VAR_private_key_path="your_key_pair_path"
-$env:TF_VAR_aws_key_pair_name="your_key_pair_name"
+export TF_VAR_aws_key_pair_name="your_key_pair_name"
 ```
 
 ### Obtaining Configuration Items
