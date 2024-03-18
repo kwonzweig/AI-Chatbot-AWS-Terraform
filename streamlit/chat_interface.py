@@ -49,7 +49,8 @@ def chatbot_call(prompt: str):
 st.title('💬 Customer Service Chatbot API')
 st.caption("🚀 A streamlit chatbot powered by OpenAI LLM + Terraform + AWS")
 
-st.subheader("Github: https://github.com/kwonzweig/AI-Chatbot-AWS-Terraform", divider='rainbow')
+st.link_button("📄 Source Code", "https://github.com/kwonzweig/AI-Chatbot-AWS-Terraform")
+st.divider()
 
 # Initialize the session_state for the chat messages
 if "messages" not in st.session_state:
